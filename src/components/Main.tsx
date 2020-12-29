@@ -15,7 +15,7 @@ const random = Math.round(Math.random());
 const Main: React.SFC<MainProps> = () => {
 
     const classes = useStyles();
-    const balance = useSelector((state: RootState) => state.transaction.balance);
+    const balance = useSelector((state: TransactionState) => state.balance);
 
     return ( 
         <Card>

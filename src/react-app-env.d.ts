@@ -16,11 +16,6 @@ type TransactionState = {
     balance: number
 }
 
-// global types
-type RootState = {
-    transaction: TransactionState
-}
-
 type Action = {
     type: 'GET_TRANSACTIONS',
     data: null

@@ -5,13 +5,17 @@ const initState = {
 
 export const transactionReducer = (state: TransactionState = initState, action: Action) => {
     let balance = 0;
-    switch(action.type){
 
+    const getBalance = (transactions: Transaction[]) => (
+        transactions.length ? transactions.reduce((acc, curr) => (
+            curr.type === 'Income' ? acc += Number(curr.amount) : acc -= Number(curr.amount)
+        ), 0) : 0
+    )
+
+    switch(action.type){
         case 'GET_TRANSACTIONS':
             const transactions: Transaction[] = localStorage.getItem('transactions') ? JSON.parse(localStorage.getItem('transactions')!) : [];
-            balance = transactions.length ? transactions.reduce((acc, curr) => (
-                curr.type === 'Income' ? acc += Number(curr.amount) : acc -= Number(curr.amount)
-            ), 0) : 0;
+            balance = getBalance(transactions);
             return {
                 ...state,
                 transactions,
@@ -21,9 +25,7 @@ export const transactionReducer = (state: TransactionState = initState, action: 
         case 'ADD_TRANSACTION':
             const newData = [action.data, ...state.transactions];
             localStorage.setItem('transactions', JSON.stringify(newData));
-            balance = newData.length ? newData.reduce((acc, curr) => (
-                curr.type === 'Income' ? acc += Number(curr.amount) : acc -= Number(curr.amount)
-            ), 0) : 0;
+            balance = getBalance(newData);
             return {
                 ...state,
                 transactions: newData,
@@ -33,9 +35,7 @@ export const transactionReducer = (state: TransactionState = initState, action: 
         case 'DELETE_TRANSACTION':
             const filteredData = state.transactions.filter(item => item.id !== action.data);
             localStorage.setItem('transactions', JSON.stringify(filteredData));
-            balance = filteredData.length ? filteredData.reduce((acc, curr) => (
-                curr.type === 'Income' ? acc += Number(curr.amount) : acc -= Number(curr.amount)
-            ), 0) : 0;
+            balance = getBalance(filteredData)
             return {
                 ...state,
                 transactions: filteredData,

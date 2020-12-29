@@ -14,7 +14,7 @@ const List: React.SFC<ListProps> = () => {
 
     const classes = useStyles();
     const dispatch = useDispatch();
-    const transactions = useSelector((state: RootState) => state.transaction.transactions);
+    const transactions = useSelector((state: TransactionState) => state.transactions);
 
     const handleDelete = (id: string) => {
         dispatch(deleteTransaction(id));

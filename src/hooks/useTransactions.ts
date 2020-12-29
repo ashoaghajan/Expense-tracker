@@ -3,7 +3,7 @@ import { resetCategories, incomeCategories, expenseCategories } from '../constan
 
 export const useTransactions = (title: 'Income' | 'Expense') => {
     resetCategories();
-    const transactions = useSelector((state: RootState) => state.transaction.transactions);
+    const transactions = useSelector((state: TransactionState) => state.transactions);
 
     const filteredTrans = transactions.filter(transaction => transaction.type === title);
     const total = filteredTrans.reduce((acc, curr) => acc += curr.amount, 0);

@@ -5,10 +5,10 @@ import App from './App';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import { createStore, applyMiddleware } from 'redux';
-import { rootReducer } from './store/reducers/rootReducer';
+import { transactionReducer } from './store/reducers/transactioReducer';
 import { SpeechProvider } from '@speechly/react-client';
 
-const store = createStore(rootReducer, applyMiddleware(thunk));
+const store = createStore(transactionReducer, applyMiddleware(thunk));
 
 ReactDOM.render(
   <SpeechProvider appId={process.env.REACT_APP_SPEECHLY_ID!} language='en-US'>
