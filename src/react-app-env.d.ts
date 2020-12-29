@@ -5,12 +5,15 @@ type Transaction = {
     id: string, 
     type: string, 
     category: string, 
-    amount: string, 
+    amount: number, 
     date: string 
 }
 
+type TransactionKey =  'type' | 'amount' | 'category' | 'date'
+
 type TransactionState = {
-    transactions: Transaction[]
+    transactions: Transaction[],
+    balance: number
 }
 
 // global types
@@ -20,7 +23,7 @@ type RootState = {
 
 type Action = {
     type: 'GET_TRANSACTIONS',
-    data: Transaction[]
+    data: null
 } | {
     type: 'ADD_TRANSACTION',
     data: Transaction 

@@ -1,28 +1,37 @@
 const initState = {
-    transactions: [
-        { id: '1', type: 'Income', category: 'Salary', amount: '800', date: 'Wed Dec 21' }, 
-        { id: '2', type: 'Expense', category: 'Rent',  amount: '350', date: 'Wed Dec 22' },
-        { id: '3', type: 'Expense', category: 'Food',  amount: '150', date: 'Wed Dec 23' }
-    ]
+    transactions: [],
+    balance: 0
 }
 
 export const transactionReducer = (state: TransactionState = initState, action: Action) => {
     switch(action.type){
+
         case 'GET_TRANSACTIONS':
+            const transactions: Transaction[] = localStorage.getItem('transactions') ? JSON.parse(localStorage.getItem('transactions')!) : [];
+            const balance = transactions.length ? transactions.reduce((acc, curr) => (
+                curr.type === 'Income' ? acc += Number(curr.amount) : acc -= Number(curr.amount)
+            ), 0) : 0;
             return {
                 ...state,
-                transactions: action.data
+                transactions,
+                balance
             } 
+
         case 'ADD_TRANSACTION':
+            const newData = [action.data, ...state.transactions];
+            localStorage.setItem('transactions', JSON.stringify(newData));
             return {
-                transactions: [action.data, ...state.transactions]
-            }     
+                transactions: newData
+            }  
+
         case 'DELETE_TRANSACTION':
-            const filteredData = state.transactions.filter(item => item.id !== action.data)
+            const filteredData = state.transactions.filter(item => item.id !== action.data);
+            localStorage.setItem('transactions', JSON.stringify(filteredData));
             return {
                 ...state,
                 transactions: filteredData
             }
+
         default:
             return state      
     }

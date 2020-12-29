@@ -23,6 +23,8 @@ export default makeStyles((theme) => ({
   },
   infoCard: {
     lineHeight: '1.5em',
-    marginTop: '20px'
+    marginTop: '20px',
+    textAlign: 'center',
+    padding: '0 10%'
   }
 }));

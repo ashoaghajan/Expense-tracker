@@ -1,12 +1,12 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 export default makeStyles((theme) => ({
-  desktop: {
+  mobile: {
     [theme.breakpoints.up('sm')]: {
       display: 'none',
     },
   },
-  mobile: {
+  desktop: {
     [theme.breakpoints.down('sm')]: {
       display: 'none',
     },

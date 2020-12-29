@@ -1,47 +1,22 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import React from 'react';
+import { useForm } from '../hooks/useForm';
 import { TextField, Typography, Grid, Button, FormControl, InputLabel, Select, MenuItem } from '@material-ui/core';
-import useStyles from '../styles/formStyles'
-import { addTransaction } from '../store/actions/transactionActions';
-import { v4 as uuidv4 } from 'uuid';
+import SnackBar from './SnackBar';
 
 export interface FormProps {
     
 }
-
-const initState = { 
-    type: 'Income', 
-    category: '', 
-    amount: '', 
-    date: '2020-12-15'
-}
  
 const Form: React.SFC<FormProps> = () => {
 
-    const classes = useStyles();
-    const dispatch = useDispatch();
-    const [state, setState] = useState(initState);
-
-    const handleChange = (e: React.ChangeEvent<{name?: string | undefined;value: unknown;}> | 
-        React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>, key: string) => {
-
-        e.persist();
-        setState(prevState => ({
-            ...prevState,
-            [key]: e.target.value
-        }))
-    }
-
-    const handleAddTransaction = () => {
-        const id = uuidv4();
-        dispatch(addTransaction({id, ...state}))
-    }
+    const { state, classes, segment, categories, handleChange, handleAddTransaction, open, setOpen } = useForm(); 
 
     return ( 
         <Grid container spacing={2}>
+            <SnackBar open={open} setOpen={setOpen}/>
             <Grid item xs={12}>
                 <Typography align='center' variant='subtitle2' gutterBottom>
-                    ...
+                    {segment && segment.words.map(word => word.value).join(' ')}
                 </Typography>
             </Grid>
             <Grid item xs={6}>
@@ -57,8 +32,9 @@ const Form: React.SFC<FormProps> = () => {
                 <FormControl fullWidth>
                     <InputLabel>Category</InputLabel>
                     <Select value={state.category} onChange={(e) => handleChange(e, 'category')}>
-                        <MenuItem value='business'>business</MenuItem>
-                        <MenuItem value='salary'>salary</MenuItem>
+                        {categories.map(item => (
+                            <MenuItem key={item.type} value={item.type}>{item.type}</MenuItem>
+                        ))}
                     </Select>
                 </FormControl>
             </Grid>

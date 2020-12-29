@@ -1,5 +1,5 @@
-export const getTransaction = (transactions: Transaction[]) => (dispatch: Dispatch) => {
-    dispatch({ type: 'GET_TRANSACTIONS', data: transactions })
+export const getTransactions = () => (dispatch: Dispatch) => {
+    dispatch({ type: 'GET_TRANSACTIONS', data: null })
 }
 
 export const addTransaction = (transaction: Transaction) => (dispatch: Dispatch) => {
