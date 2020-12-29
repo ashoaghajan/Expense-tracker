@@ -19,7 +19,7 @@ const Main: React.SFC<MainProps> = () => {
 
     return ( 
         <Card>
-            <CardHeader title='Expense Tracker' subheader='Powered by Speechly'/>
+            <CardHeader title='Income/Expense Tracker' subheader='Powered by Speechly'/>
             <CardContent>
                 <Typography align='center' variant='h5'>Total Balance ${balance}</Typography>
                 <Typography variant='subtitle1' className={classes.infoCard}>
