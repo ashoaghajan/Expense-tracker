@@ -4,7 +4,7 @@ const expenseColors = ['#b50d12', '#bf2f1f', '#c9452c', '#d3583a', '#dc6a48', '#
 export const incomeCategories = [
   { type: 'Salary', amount: 0, color: incomeColors[0] },
   { type: 'Deposits', amount: 0, color: incomeColors[1] },
-  { type: 'Deposit interest', amount: 0, color: incomeColors[2] },
+  { type: 'Accumulated interest', amount: 0, color: incomeColors[2] },
   { type: 'Extra income', amount: 0, color: incomeColors[3] },
   { type: 'Gifts', amount: 0, color: incomeColors[4] },
   { type: 'Savings', amount: 0, color: incomeColors[5] },
@@ -16,12 +16,12 @@ export const incomeCategories = [
 export const expenseCategories = [
   { type: 'Food', amount: 0, color: expenseColors[0] },
   { type: 'Clothes', amount: 0, color: expenseColors[1] },
-  { type: 'Other Shopping', amount: 0, color: expenseColors[2] },
+  { type: 'Shopping', amount: 0, color: expenseColors[2] },
   { type: 'Entertainment', amount: 0, color: expenseColors[3] },
   { type: 'Health care', amount: 0, color: expenseColors[4] },
   { type: 'House', amount: 0, color: expenseColors[5] },
   { type: 'Utility payments', amount: 0, color: expenseColors[6] },
-  { type: 'Business expenses', amount: 0, color: expenseColors[7] },
+  { type: 'Taxes', amount: 0, color: expenseColors[7] },
   { type: 'Car', amount: 0, color: expenseColors[8] },
   { type: 'Travel', amount: 0, color: expenseColors[9] },
   { type: 'Other', amount: 0, color: expenseColors[10] }
